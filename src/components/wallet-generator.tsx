@@ -126,7 +126,7 @@ export function WalletGenerator() {
           <CardHeader>
             <CardTitle>Seed Inputs</CardTitle>
             <CardDescription>
-              Paste your mnemonic and (optionally) a passphrase to lock in your seed.
+              Paste your mnemonic to lock in your seed.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
