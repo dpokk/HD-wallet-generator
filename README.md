@@ -1,6 +1,6 @@
-# Wallet Generator
+# Hierarchical Deterministic (HD) Wallet Generator
 
-A minimal dark-themed Next.js application that turns a BIP-39 mnemonic into a deterministic stream of Ed25519 wallet keypairs. The UI embraces a monochrome, AMOLED-friendly palette that keeps the focus on the cryptography.
+Hierarchical Deterministic (HD) wallets are a type of wallet that can generate a tree of key pairs from a single seed. This allows for the generation of multiple addresses from a single root seed, providing convenience.
 
 ## 🔍 What this project does
 
@@ -35,14 +35,8 @@ npm run dev
 
 Visit [http://localhost:3000](http://localhost:3000) to use the wallet generator.
 
-## 📦 Useful scripts
-
-- `npm run dev` – start the development server with live reload
-- `npm run lint` – run ESLint plus type checks
-- `npm run build` – produce an optimized production bundle
-- `npm run start` – serve the production build locally
-
 ## ⚠️ Operational notes
 
 - Generated keys are rendered in your browser and are **never persisted** by the app.
 - Treat mnemonic phrases and derived keys as sensitive secrets—avoid using this demo for mainnet funds.
+- This project was made for understanding how to work with cryptographic libraries hence it does not use actual sol/btc/eth libraries
