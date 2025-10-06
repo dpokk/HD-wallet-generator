@@ -1,31 +1,48 @@
 # Wallet Generator
 
-A minimal dark-themed Next.js app styled with shadcn/ui that deterministically derives Ed25519 wallet keypairs from a BIP-39 mnemonic.
+A minimal dark-themed Next.js application that turns a BIP-39 mnemonic into a deterministic stream of Ed25519 wallet keypairs. The UI embraces a monochrome, AMOLED-friendly palette that keeps the focus on the cryptography.
 
-## Features
+## 🔍 What this project does
 
-- 🌓 Dark-first UI built with Tailwind CSS and shadcn/ui primitives
-- 🔐 Validates mnemonics against the official English BIP-39 wordlist
-- ♾️ Deterministic generation of sequential Ed25519 keypairs using HMAC-SHA512
-- 🧮 Optional passphrase support and inline seed preview
-- 🪶 All cryptography happens locally in the browser
+1. **Mnemonic intake** – Users paste an existing 12–24 word BIP-39 mnemonic and can optionally supply a BIP-39 passphrase.
+2. **Seed derivation** – The app runs the mnemonic through the PBKDF2 routine defined by BIP-39 to obtain the master seed entirely in the browser.
+3. **Deterministic derivation** – Each wallet is derived via HMAC-SHA512 using the master seed plus an incrementing index, producing 32 bytes of entropy for an Ed25519 keypair.
+4. **Key material presentation** – The generated Ed25519 public/private keypair can be revealed or copied per wallet. Ed25519 is the signature scheme used by Solana and several other modern chains, so the derived keys are directly compatible.
 
-## Getting Started
+All cryptographic work happens client-side; nothing is sent to a server.
+
+## 🧰 Tech stack
+
+- Next.js 14 (App Router) + TypeScript
+- Tailwind CSS with custom shadcn/ui primitives for the minimal dark interface
+- `@scure/bip39`, `@noble/hashes`, and `tweetnacl` for standards-compliant key derivation
+
+## 🚀 Setup
+
+Clone the repository and install dependencies:
 
 ```bash
+git clone https://github.com/dpokk/HD-wallet-generator.git
+cd HD-wallet-generator
 npm install
+```
+
+Run the development server:
+
+```bash
 npm run dev
 ```
 
-The app will be available at [http://localhost:3000](http://localhost:3000).
+Visit [http://localhost:3000](http://localhost:3000) to use the wallet generator.
 
-## Useful Scripts
+## 📦 Useful scripts
 
-- `npm run dev` – start the development server
-- `npm run lint` – run ESLint and type checks
-- `npm run build` – create a production build
-- `npm run start` – serve the production build
+- `npm run dev` – start the development server with live reload
+- `npm run lint` – run ESLint plus type checks
+- `npm run build` – produce an optimized production bundle
+- `npm run start` – serve the production build locally
 
-## Notes
+## ⚠️ Operational notes
 
-This project is for demo purposes only. Generated keys are displayed in the browser and are not persisted anywhere — handle them responsibly and avoid using them for mainnet transactions.
+- Generated keys are rendered in your browser and are **never persisted** by the app.
+- Treat mnemonic phrases and derived keys as sensitive secrets—avoid using this demo for mainnet funds.
