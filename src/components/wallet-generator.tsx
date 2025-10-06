@@ -55,7 +55,7 @@ export function WalletGenerator() {
 
   const seedPreview = useMemo(() => {
     if (!seed) return null;
-    return toHex(seed.slice(0, 16));
+    return toHex(seed.slice(0, 32));
   }, [seed]);
 
   useEffect(() => {
@@ -142,7 +142,7 @@ export function WalletGenerator() {
                 className="font-mono text-sm"
               />
             </div>
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <Label htmlFor="passphrase">Optional passphrase</Label>
               <Input
                 id="passphrase"
@@ -153,7 +153,7 @@ export function WalletGenerator() {
                   setPassphrase(event.target.value)
                 }
               />
-            </div>
+            </div> */}
             {error ? (
               <p className="text-sm text-destructive">{error}</p>
             ) : seedPreview ? (
